@@ -1,0 +1,34 @@
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\bin\Debug\ShoperCSVImport.exe.config
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\bin\Debug\ShoperCSVImport.exe
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\bin\Debug\ShoperCSVImport.pdb
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\bin\Debug\NReco.Csv.dll
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\bin\Debug\NReco.Csv.xml
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.csprojAssemblyReference.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.Form1.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.Properties.Resources.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.GenerateResource.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.CoreCompileInputs.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.CopyComplete
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.exe
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.pdb
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.FormDopasuj.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport\ShoperCSVImport\obj\Debug\ShoperCSVImport.FormDopasujKolumny.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ShoperCSVImport.exe.config
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ShoperCSVImport.exe
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ShoperCSVImport.pdb
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\NReco.Csv.dll
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\NReco.Csv.xml
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.AssemblyReference.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.SuggestedBindingRedirects.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.FormDopasuj.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.Properties.Resources.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.GenerateResource.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.CoreCompileInputs.cache
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.csproj.CopyComplete
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.exe
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.pdb
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ExcelDataReader.dll
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ExcelDataReader.pdb
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\bin\Debug\ExcelDataReader.xml
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.FormExcelReader.resources
+E:\OneDrive\VisualStudio\ShoperCSVImport — kopia\ShoperCSVImport\obj\Debug\ShoperCSVImport.FormMain.resources
