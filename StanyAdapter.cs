@@ -14,6 +14,8 @@ namespace ShoperCSVImport
         public string filterTitle;
         public int idxID, idxTytul, idxDostepny, idxEAN;
 
+        public TemplateHelper.StanyAdapterConfig config;
+
         public virtual List<CsvShoperMatch> PrzetworzExt(List<ItemShoper> magazyn, List<string[]> csv)
         {
             var lista = new List<CsvShoperMatch>();

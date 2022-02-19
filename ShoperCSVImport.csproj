@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,9 +73,16 @@
     <Compile Include="FormExcelReader.Designer.cs">
       <DependentUpon>FormExcelReader.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSimpleConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSimpleConfig.Designer.cs">
+      <DependentUpon>FormSimpleConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListViewUtil.cs" />
     <Compile Include="ParserAdapter.cs" />
     <Compile Include="StanyAdapter.cs" />
+    <Compile Include="TemplateHelper.cs" />
     <Compile Include="Util1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormExcelReader.resx">
       <DependentUpon>FormExcelReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSimpleConfig.resx">
+      <DependentUpon>FormSimpleConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,6 +197,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apply2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_status1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kspread.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gohome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_cancel1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

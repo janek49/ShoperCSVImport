@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,11 @@ namespace ShoperCopy
 {
     public static class Util
     {
+        public static double ParseAnyDouble(string parse)
+        {
+            return Double.Parse(parse.Replace(',', '.'), CultureInfo.InvariantCulture);
+        }
+
         public static ImageCodecInfo GetEncoder(ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();

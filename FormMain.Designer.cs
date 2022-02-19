@@ -48,15 +48,15 @@
             this.btnRead = new System.Windows.Forms.Button();
             this.btnPlikIn = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnFilterUnlinked = new System.Windows.Forms.Button();
+            this.btnExportTable = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtParFilter = new System.Windows.Forms.TextBox();
             this.cbxParTitle = new System.Windows.Forms.ComboBox();
-            this.cbxParAvail = new System.Windows.Forms.ComboBox();
             this.cbxParEAN = new System.Windows.Forms.ComboBox();
             this.cbxParIDSKU = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -69,11 +69,18 @@
             this.btnJoinTables = new System.Windows.Forms.Button();
             this.btnDopasuj = new System.Windows.Forms.Button();
             this.lstProdukty = new System.Windows.Forms.ListView();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cbxParPrice = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbxParAvail = new System.Windows.Forms.ComboBox();
+            this.btnAutoConfig = new System.Windows.Forms.Button();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.btnReadInFromLinks = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnGenExport = new System.Windows.Forms.Button();
             this.btnSaveExport = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbxExportConf = new System.Windows.Forms.ComboBox();
-            this.btnExportPreview = new System.Windows.Forms.Button();
             this.lstExportPrev = new System.Windows.Forms.ListView();
             this.lblExpPrev = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -83,6 +90,8 @@
             this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +100,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -327,6 +337,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnFilterUnlinked);
+            this.tabPage3.Controls.Add(this.btnExportTable);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox1);
@@ -344,13 +356,45 @@
             this.tabPage3.Text = "Krok 3 - Powiązania";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnFilterUnlinked
+            // 
+            this.btnFilterUnlinked.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFilterUnlinked.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnFilterUnlinked.Image = global::ShoperCSVImport.Properties.Resources.db_status1;
+            this.btnFilterUnlinked.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFilterUnlinked.Location = new System.Drawing.Point(788, 104);
+            this.btnFilterUnlinked.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnFilterUnlinked.Name = "btnFilterUnlinked";
+            this.btnFilterUnlinked.Size = new System.Drawing.Size(177, 35);
+            this.btnFilterUnlinked.TabIndex = 16;
+            this.btnFilterUnlinked.Text = "Filtruj niepowiązane";
+            this.btnFilterUnlinked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFilterUnlinked.UseVisualStyleBackColor = true;
+            this.btnFilterUnlinked.Click += new System.EventHandler(this.btnFilterUnlinked_Click);
+            // 
+            // btnExportTable
+            // 
+            this.btnExportTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnExportTable.Image = global::ShoperCSVImport.Properties.Resources.reload;
+            this.btnExportTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportTable.Location = new System.Drawing.Point(809, 66);
+            this.btnExportTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExportTable.Name = "btnExportTable";
+            this.btnExportTable.Size = new System.Drawing.Size(156, 35);
+            this.btnExportTable.TabIndex = 17;
+            this.btnExportTable.Text = "Eksportuj tabelę";
+            this.btnExportTable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportTable.UseVisualStyleBackColor = true;
+            this.btnExportTable.Click += new System.EventHandler(this.btnExportTable_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(8, 62);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(8, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 20);
+            this.label1.Size = new System.Drawing.Size(94, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Konfiguracja:";
             // 
@@ -358,20 +402,18 @@
             // 
             this.groupBox2.Controls.Add(this.txtParFilter);
             this.groupBox2.Controls.Add(this.cbxParTitle);
-            this.groupBox2.Controls.Add(this.cbxParAvail);
             this.groupBox2.Controls.Add(this.cbxParEAN);
             this.groupBox2.Controls.Add(this.cbxParIDSKU);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox2.Location = new System.Drawing.Point(357, 6);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox2.Location = new System.Drawing.Point(253, 21);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(486, 135);
+            this.groupBox2.Size = new System.Drawing.Size(437, 99);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parametry";
@@ -380,104 +422,83 @@
             // 
             this.txtParFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtParFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtParFilter.Location = new System.Drawing.Point(113, 98);
+            this.txtParFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtParFilter.Location = new System.Drawing.Point(266, 61);
             this.txtParFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtParFilter.Name = "txtParFilter";
-            this.txtParFilter.Size = new System.Drawing.Size(367, 26);
+            this.txtParFilter.Size = new System.Drawing.Size(160, 24);
             this.txtParFilter.TabIndex = 22;
             // 
             // cbxParTitle
             // 
             this.cbxParTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxParTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbxParTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbxParTitle.FormattingEnabled = true;
-            this.cbxParTitle.Location = new System.Drawing.Point(320, 63);
+            this.cbxParTitle.Location = new System.Drawing.Point(71, 61);
             this.cbxParTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxParTitle.Name = "cbxParTitle";
-            this.cbxParTitle.Size = new System.Drawing.Size(160, 28);
+            this.cbxParTitle.Size = new System.Drawing.Size(141, 26);
             this.cbxParTitle.TabIndex = 21;
-            // 
-            // cbxParAvail
-            // 
-            this.cbxParAvail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxParAvail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cbxParAvail.FormattingEnabled = true;
-            this.cbxParAvail.Location = new System.Drawing.Point(112, 63);
-            this.cbxParAvail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbxParAvail.Name = "cbxParAvail";
-            this.cbxParAvail.Size = new System.Drawing.Size(144, 28);
-            this.cbxParAvail.TabIndex = 20;
             // 
             // cbxParEAN
             // 
             this.cbxParEAN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxParEAN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbxParEAN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbxParEAN.FormattingEnabled = true;
-            this.cbxParEAN.Location = new System.Drawing.Point(320, 27);
+            this.cbxParEAN.Location = new System.Drawing.Point(266, 27);
             this.cbxParEAN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxParEAN.Name = "cbxParEAN";
-            this.cbxParEAN.Size = new System.Drawing.Size(160, 28);
+            this.cbxParEAN.Size = new System.Drawing.Size(160, 26);
             this.cbxParEAN.TabIndex = 19;
             // 
             // cbxParIDSKU
             // 
             this.cbxParIDSKU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxParIDSKU.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbxParIDSKU.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbxParIDSKU.FormattingEnabled = true;
-            this.cbxParIDSKU.Location = new System.Drawing.Point(112, 27);
+            this.cbxParIDSKU.Location = new System.Drawing.Point(71, 27);
             this.cbxParIDSKU.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxParIDSKU.Name = "cbxParIDSKU";
-            this.cbxParIDSKU.Size = new System.Drawing.Size(144, 28);
+            this.cbxParIDSKU.Size = new System.Drawing.Size(141, 26);
             this.cbxParIDSKU.TabIndex = 14;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(3, 101);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(218, 64);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 20);
+            this.label9.Size = new System.Drawing.Size(36, 18);
             this.label9.TabIndex = 18;
-            this.label9.Text = "Filtr nazwy:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(2, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 20);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Dostępność:";
+            this.label9.Text = "Filtr:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(260, 67);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(4, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 20);
+            this.label7.Size = new System.Drawing.Size(43, 18);
             this.label7.TabIndex = 16;
             this.label7.Text = "Tytuł:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(262, 31);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(219, 31);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 20);
+            this.label6.Size = new System.Drawing.Size(42, 18);
             this.label6.TabIndex = 15;
             this.label6.Text = "EAN:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.Location = new System.Drawing.Point(4, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 20);
+            this.label5.Size = new System.Drawing.Size(61, 18);
             this.label5.TabIndex = 14;
             this.label5.Text = "ID/SKU:";
             // 
@@ -488,19 +509,19 @@
             this.groupBox1.Controls.Add(this.lblStatMissingMatch);
             this.groupBox1.Controls.Add(this.lblStatAutoMatch);
             this.groupBox1.Controls.Add(this.lblStatManualMatch);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox1.Location = new System.Drawing.Point(880, 6);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox1.Location = new System.Drawing.Point(971, 6);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(344, 135);
+            this.groupBox1.Size = new System.Drawing.Size(253, 135);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane";
             // 
             // lblStatReadInprds
             // 
-            this.lblStatReadInprds.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStatReadInprds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblStatReadInprds.Location = new System.Drawing.Point(12, 24);
             this.lblStatReadInprds.Name = "lblStatReadInprds";
             this.lblStatReadInprds.Size = new System.Drawing.Size(321, 24);
@@ -510,9 +531,9 @@
             // 
             // lblStatMissingMatch
             // 
-            this.lblStatMissingMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStatMissingMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblStatMissingMatch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStatMissingMatch.Location = new System.Drawing.Point(12, 105);
+            this.lblStatMissingMatch.Location = new System.Drawing.Point(12, 102);
             this.lblStatMissingMatch.Name = "lblStatMissingMatch";
             this.lblStatMissingMatch.Size = new System.Drawing.Size(321, 24);
             this.lblStatMissingMatch.TabIndex = 11;
@@ -521,8 +542,8 @@
             // 
             // lblStatAutoMatch
             // 
-            this.lblStatAutoMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblStatAutoMatch.Location = new System.Drawing.Point(12, 52);
+            this.lblStatAutoMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStatAutoMatch.Location = new System.Drawing.Point(12, 49);
             this.lblStatAutoMatch.Name = "lblStatAutoMatch";
             this.lblStatAutoMatch.Size = new System.Drawing.Size(321, 24);
             this.lblStatAutoMatch.TabIndex = 9;
@@ -531,9 +552,9 @@
             // 
             // lblStatManualMatch
             // 
-            this.lblStatManualMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStatManualMatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblStatManualMatch.ForeColor = System.Drawing.Color.Goldenrod;
-            this.lblStatManualMatch.Location = new System.Drawing.Point(12, 78);
+            this.lblStatManualMatch.Location = new System.Drawing.Point(12, 75);
             this.lblStatManualMatch.Name = "lblStatManualMatch";
             this.lblStatManualMatch.Size = new System.Drawing.Size(321, 24);
             this.lblStatManualMatch.TabIndex = 10;
@@ -543,24 +564,24 @@
             // cmbAdapter
             // 
             this.cmbAdapter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAdapter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cmbAdapter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbAdapter.FormattingEnabled = true;
-            this.cmbAdapter.Location = new System.Drawing.Point(115, 59);
+            this.cmbAdapter.Location = new System.Drawing.Point(10, 75);
             this.cmbAdapter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbAdapter.Name = "cmbAdapter";
-            this.cmbAdapter.Size = new System.Drawing.Size(200, 28);
+            this.cmbAdapter.Size = new System.Drawing.Size(200, 26);
             this.cmbAdapter.TabIndex = 2;
             this.cmbAdapter.SelectedIndexChanged += new System.EventHandler(this.cmbAdapter_SelectedIndexChanged);
             // 
             // btnJoinTables
             // 
-            this.btnJoinTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnJoinTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnJoinTables.Image = global::ShoperCSVImport.Properties.Resources._2downarrow1;
             this.btnJoinTables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnJoinTables.Location = new System.Drawing.Point(9, 6);
             this.btnJoinTables.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnJoinTables.Name = "btnJoinTables";
-            this.btnJoinTables.Size = new System.Drawing.Size(176, 41);
+            this.btnJoinTables.Size = new System.Drawing.Size(163, 37);
             this.btnJoinTables.TabIndex = 7;
             this.btnJoinTables.Text = "1. Przygotuj tabelę";
             this.btnJoinTables.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -569,13 +590,13 @@
             // 
             // btnDopasuj
             // 
-            this.btnDopasuj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnDopasuj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDopasuj.Image = global::ShoperCSVImport.Properties.Resources.blockdevice;
             this.btnDopasuj.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDopasuj.Location = new System.Drawing.Point(9, 100);
+            this.btnDopasuj.Location = new System.Drawing.Point(9, 106);
             this.btnDopasuj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDopasuj.Name = "btnDopasuj";
-            this.btnDopasuj.Size = new System.Drawing.Size(127, 41);
+            this.btnDopasuj.Size = new System.Drawing.Size(119, 35);
             this.btnDopasuj.TabIndex = 5;
             this.btnDopasuj.Text = "2. Zastosuj";
             this.btnDopasuj.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -587,24 +608,136 @@
             this.lstProdukty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstProdukty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lstProdukty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lstProdukty.FullRowSelect = true;
             this.lstProdukty.HideSelection = false;
             this.lstProdukty.Location = new System.Drawing.Point(9, 149);
             this.lstProdukty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstProdukty.Name = "lstProdukty";
-            this.lstProdukty.Size = new System.Drawing.Size(1214, 540);
+            this.lstProdukty.Size = new System.Drawing.Size(1214, 552);
             this.lstProdukty.TabIndex = 0;
             this.lstProdukty.UseCompatibleStateImageBehavior = false;
             this.lstProdukty.View = System.Windows.Forms.View.Details;
             this.lstProdukty.DoubleClick += new System.EventHandler(this.lstProdukty_DoubleClick);
+            this.lstProdukty.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lstProdukty_KeyUp);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.cbxParPrice);
+            this.tabPage5.Controls.Add(this.label12);
+            this.tabPage5.Controls.Add(this.label8);
+            this.tabPage5.Controls.Add(this.cbxParAvail);
+            this.tabPage5.Controls.Add(this.btnAutoConfig);
+            this.tabPage5.Controls.Add(this.dataGrid);
+            this.tabPage5.Controls.Add(this.btnReadInFromLinks);
+            this.tabPage5.Controls.Add(this.label10);
+            this.tabPage5.ImageIndex = 4;
+            this.tabPage5.Location = new System.Drawing.Point(4, 43);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1232, 705);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Krok 4 - Edycja";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // cbxParPrice
+            // 
+            this.cbxParPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxParPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbxParPrice.FormattingEnabled = true;
+            this.cbxParPrice.Location = new System.Drawing.Point(556, 47);
+            this.cbxParPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbxParPrice.Name = "cbxParPrice";
+            this.cbxParPrice.Size = new System.Drawing.Size(141, 26);
+            this.cbxParPrice.TabIndex = 29;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Location = new System.Drawing.Point(457, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(47, 18);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Cena:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(457, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 18);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Dostępność:";
+            // 
+            // cbxParAvail
+            // 
+            this.cbxParAvail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxParAvail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cbxParAvail.FormattingEnabled = true;
+            this.cbxParAvail.Location = new System.Drawing.Point(556, 12);
+            this.cbxParAvail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbxParAvail.Name = "cbxParAvail";
+            this.cbxParAvail.Size = new System.Drawing.Size(141, 26);
+            this.cbxParAvail.TabIndex = 20;
+            // 
+            // btnAutoConfig
+            // 
+            this.btnAutoConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnAutoConfig.Image = global::ShoperCSVImport.Properties.Resources.blockdevice;
+            this.btnAutoConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAutoConfig.Location = new System.Drawing.Point(269, 7);
+            this.btnAutoConfig.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAutoConfig.Name = "btnAutoConfig";
+            this.btnAutoConfig.Size = new System.Drawing.Size(172, 35);
+            this.btnAutoConfig.TabIndex = 26;
+            this.btnAutoConfig.Text = "Autokonfiguracja";
+            this.btnAutoConfig.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAutoConfig.UseVisualStyleBackColor = true;
+            this.btnAutoConfig.Click += new System.EventHandler(this.btnAutoConfig_Click);
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.AllowUserToAddRows = false;
+            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Location = new System.Drawing.Point(6, 97);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(1218, 600);
+            this.dataGrid.TabIndex = 25;
+            // 
+            // btnReadInFromLinks
+            // 
+            this.btnReadInFromLinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnReadInFromLinks.Image = global::ShoperCSVImport.Properties.Resources._2downarrow1;
+            this.btnReadInFromLinks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReadInFromLinks.Location = new System.Drawing.Point(7, 7);
+            this.btnReadInFromLinks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReadInFromLinks.Name = "btnReadInFromLinks";
+            this.btnReadInFromLinks.Size = new System.Drawing.Size(177, 35);
+            this.btnReadInFromLinks.TabIndex = 24;
+            this.btnReadInFromLinks.Text = "Wczytaj z powiązań";
+            this.btnReadInFromLinks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReadInFromLinks.UseVisualStyleBackColor = true;
+            this.btnReadInFromLinks.Click += new System.EventHandler(this.btnReadInFromLinks_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(121, 20);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Arkusz roboczy:";
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnGenExport);
             this.tabPage4.Controls.Add(this.btnSaveExport);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.cbxExportConf);
-            this.tabPage4.Controls.Add(this.btnExportPreview);
             this.tabPage4.Controls.Add(this.lstExportPrev);
             this.tabPage4.Controls.Add(this.lblExpPrev);
             this.tabPage4.ImageIndex = 3;
@@ -614,15 +747,31 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage4.Size = new System.Drawing.Size(1232, 705);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Krok 4 - Zapis";
+            this.tabPage4.Text = "Krok 5 - Zapis";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnGenExport
+            // 
+            this.btnGenExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnGenExport.Image = global::ShoperCSVImport.Properties.Resources.apply2;
+            this.btnGenExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGenExport.Location = new System.Drawing.Point(9, 8);
+            this.btnGenExport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnGenExport.Name = "btnGenExport";
+            this.btnGenExport.Size = new System.Drawing.Size(131, 41);
+            this.btnGenExport.TabIndex = 21;
+            this.btnGenExport.Text = "Generuj plik";
+            this.btnGenExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGenExport.UseVisualStyleBackColor = true;
+            this.btnGenExport.Click += new System.EventHandler(this.btnGenExport_Click);
             // 
             // btnSaveExport
             // 
+            this.btnSaveExport.Enabled = false;
             this.btnSaveExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSaveExport.Image = global::ShoperCSVImport.Properties.Resources.floppy_unmount;
             this.btnSaveExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveExport.Location = new System.Drawing.Point(620, 8);
+            this.btnSaveExport.Location = new System.Drawing.Point(155, 8);
             this.btnSaveExport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveExport.Name = "btnSaveExport";
             this.btnSaveExport.Size = new System.Drawing.Size(110, 41);
@@ -632,44 +781,6 @@
             this.btnSaveExport.UseVisualStyleBackColor = true;
             this.btnSaveExport.Click += new System.EventHandler(this.btnSaveExport_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.Location = new System.Drawing.Point(8, 10);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(101, 20);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Konfiguracja:";
-            // 
-            // cbxExportConf
-            // 
-            this.cbxExportConf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxExportConf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cbxExportConf.FormattingEnabled = true;
-            this.cbxExportConf.Items.AddRange(new object[] {
-            "Shoper Stany CSV"});
-            this.cbxExportConf.Location = new System.Drawing.Point(134, 8);
-            this.cbxExportConf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbxExportConf.Name = "cbxExportConf";
-            this.cbxExportConf.Size = new System.Drawing.Size(308, 28);
-            this.cbxExportConf.TabIndex = 18;
-            // 
-            // btnExportPreview
-            // 
-            this.btnExportPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnExportPreview.Image = global::ShoperCSVImport.Properties.Resources.apply2;
-            this.btnExportPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportPreview.Location = new System.Drawing.Point(474, 8);
-            this.btnExportPreview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnExportPreview.Name = "btnExportPreview";
-            this.btnExportPreview.Size = new System.Drawing.Size(131, 41);
-            this.btnExportPreview.TabIndex = 19;
-            this.btnExportPreview.Text = "Generuj plik";
-            this.btnExportPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportPreview.UseVisualStyleBackColor = true;
-            this.btnExportPreview.Click += new System.EventHandler(this.btnExportPreview_Click);
-            // 
             // lstExportPrev
             // 
             this.lstExportPrev.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -678,23 +789,24 @@
             this.lstExportPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lstExportPrev.FullRowSelect = true;
             this.lstExportPrev.HideSelection = false;
-            this.lstExportPrev.Location = new System.Drawing.Point(9, 79);
+            this.lstExportPrev.Location = new System.Drawing.Point(9, 57);
             this.lstExportPrev.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstExportPrev.Name = "lstExportPrev";
-            this.lstExportPrev.Size = new System.Drawing.Size(1214, 632);
+            this.lstExportPrev.Size = new System.Drawing.Size(1214, 640);
             this.lstExportPrev.TabIndex = 16;
             this.lstExportPrev.UseCompatibleStateImageBehavior = false;
             this.lstExportPrev.View = System.Windows.Forms.View.Details;
             // 
             // lblExpPrev
             // 
+            this.lblExpPrev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExpPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblExpPrev.Location = new System.Drawing.Point(8, 51);
+            this.lblExpPrev.Location = new System.Drawing.Point(949, 29);
             this.lblExpPrev.Name = "lblExpPrev";
-            this.lblExpPrev.Size = new System.Drawing.Size(468, 24);
+            this.lblExpPrev.Size = new System.Drawing.Size(274, 24);
             this.lblExpPrev.TabIndex = 15;
             this.lblExpPrev.Text = "Wpisy: 0";
-            this.lblExpPrev.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblExpPrev.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // imageList1
             // 
@@ -704,6 +816,7 @@
             this.imageList1.Images.SetKeyName(1, "vcalendar.png");
             this.imageList1.Images.SetKeyName(2, "kblackbox.png");
             this.imageList1.Images.SetKeyName(3, "download_manager.png");
+            this.imageList1.Images.SetKeyName(4, "edit.png");
             // 
             // FormMain
             // 
@@ -728,8 +841,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -766,7 +881,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbxParEAN;
@@ -777,11 +891,19 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.ListView lstExportPrev;
         private System.Windows.Forms.Label lblExpPrev;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cbxExportConf;
-        private System.Windows.Forms.Button btnExportPreview;
         private System.Windows.Forms.Button btnSaveExport;
         private System.Windows.Forms.Button btnReadExcel;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnReadInFromLinks;
+        private System.Windows.Forms.DataGridView dataGrid;
+        private System.Windows.Forms.Button btnAutoConfig;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbxParPrice;
+        private System.Windows.Forms.Button btnFilterUnlinked;
+        private System.Windows.Forms.Button btnExportTable;
+        private System.Windows.Forms.Button btnGenExport;
     }
 }
 
