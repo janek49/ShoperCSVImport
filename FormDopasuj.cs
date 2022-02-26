@@ -45,7 +45,7 @@ namespace ShoperCSVImport
                 lvi.UseItemStyleForSubItems = false;
                 if (lEAN!=null && lEAN.Trim().Length > 0 && ish.ean.Trim() == lEAN.Trim())
                 {
-                    var ft = new Font(lvi.SubItems[2].Font, FontStyle.Bold);
+                    var ft = new Font(lstDopasuj.Font, FontStyle.Bold);
                     lvi.SubItems[2].Font = ft;
                 }
                 lstDopasuj.Items.Add(lvi);

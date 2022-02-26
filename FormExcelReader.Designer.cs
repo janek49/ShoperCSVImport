@@ -35,11 +35,13 @@
             this.cbxTable = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lstContent = new System.Windows.Forms.ListView();
+            this.cbRemoveEmptyCols = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnReadWholeDoc = new System.Windows.Forms.Button();
+            this.btnAccept = new System.Windows.Forms.Button();
             this.btnOpenTable = new System.Windows.Forms.Button();
             this.btnReadSheet = new System.Windows.Forms.Button();
             this.btnSelFile = new System.Windows.Forms.Button();
-            this.cbRemoveEmptyCols = new System.Windows.Forms.CheckBox();
-            this.btnAccept = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -104,10 +106,62 @@
             this.lstContent.View = System.Windows.Forms.View.Details;
             this.lstContent.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lstContent_KeyUp);
             // 
+            // cbRemoveEmptyCols
+            // 
+            this.cbRemoveEmptyCols.AutoSize = true;
+            this.cbRemoveEmptyCols.Checked = true;
+            this.cbRemoveEmptyCols.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbRemoveEmptyCols.Location = new System.Drawing.Point(448, 89);
+            this.cbRemoveEmptyCols.Name = "cbRemoveEmptyCols";
+            this.cbRemoveEmptyCols.Size = new System.Drawing.Size(146, 20);
+            this.cbRemoveEmptyCols.TabIndex = 9;
+            this.cbRemoveEmptyCols.Text = "Usuń puste kolumny";
+            this.cbRemoveEmptyCols.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(602, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "lub";
+            // 
+            // btnReadWholeDoc
+            // 
+            this.btnReadWholeDoc.Enabled = false;
+            this.btnReadWholeDoc.Image = global::ShoperCSVImport.Properties.Resources._2downarrow2;
+            this.btnReadWholeDoc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReadWholeDoc.Location = new System.Drawing.Point(633, 50);
+            this.btnReadWholeDoc.Name = "btnReadWholeDoc";
+            this.btnReadWholeDoc.Size = new System.Drawing.Size(192, 34);
+            this.btnReadWholeDoc.TabIndex = 11;
+            this.btnReadWholeDoc.Text = "2. Wczytaj cały skoroszyt";
+            this.btnReadWholeDoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReadWholeDoc.UseVisualStyleBackColor = true;
+            this.btnReadWholeDoc.Click += new System.EventHandler(this.btnReadWholeDoc_Click);
+            // 
+            // btnAccept
+            // 
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAccept.Enabled = false;
+            this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnAccept.Image = global::ShoperCSVImport.Properties.Resources.apply;
+            this.btnAccept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAccept.Location = new System.Drawing.Point(871, 76);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(128, 33);
+            this.btnAccept.TabIndex = 10;
+            this.btnAccept.Text = "3. Zatwierdź";
+            this.btnAccept.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
             // btnOpenTable
             // 
             this.btnOpenTable.Enabled = false;
-            this.btnOpenTable.Image = global::ShoperCSVImport.Properties.Resources._2downarrow2;
+            this.btnOpenTable.Image = global::ShoperCSVImport.Properties.Resources._1downarrow;
             this.btnOpenTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenTable.Location = new System.Drawing.Point(448, 50);
             this.btnOpenTable.Name = "btnOpenTable";
@@ -146,40 +200,13 @@
             this.btnSelFile.UseVisualStyleBackColor = true;
             this.btnSelFile.Click += new System.EventHandler(this.btnSelFile_Click);
             // 
-            // cbRemoveEmptyCols
-            // 
-            this.cbRemoveEmptyCols.AutoSize = true;
-            this.cbRemoveEmptyCols.Checked = true;
-            this.cbRemoveEmptyCols.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRemoveEmptyCols.Location = new System.Drawing.Point(448, 89);
-            this.cbRemoveEmptyCols.Name = "cbRemoveEmptyCols";
-            this.cbRemoveEmptyCols.Size = new System.Drawing.Size(146, 20);
-            this.cbRemoveEmptyCols.TabIndex = 9;
-            this.cbRemoveEmptyCols.Text = "Usuń puste kolumny";
-            this.cbRemoveEmptyCols.UseVisualStyleBackColor = true;
-            // 
-            // btnAccept
-            // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAccept.Enabled = false;
-            this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnAccept.Image = global::ShoperCSVImport.Properties.Resources.apply;
-            this.btnAccept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccept.Location = new System.Drawing.Point(871, 76);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(128, 33);
-            this.btnAccept.TabIndex = 10;
-            this.btnAccept.Text = "3. Zatwierdź";
-            this.btnAccept.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
             // FormExcelReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 680);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnReadWholeDoc);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.cbRemoveEmptyCols);
             this.Controls.Add(this.lstContent);
@@ -216,5 +243,7 @@
         private System.Windows.Forms.ListView lstContent;
         private System.Windows.Forms.CheckBox cbRemoveEmptyCols;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Button btnReadWholeDoc;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -130,7 +130,7 @@
             this.lblTytul.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblTytul.Location = new System.Drawing.Point(84, 72);
             this.lblTytul.Name = "lblTytul";
-            this.lblTytul.Size = new System.Drawing.Size(683, 45);
+            this.lblTytul.Size = new System.Drawing.Size(817, 45);
             this.lblTytul.TabIndex = 1;
             this.lblTytul.Text = "<pusty>";
             // 
@@ -143,12 +143,12 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.lstDopasuj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lstDopasuj.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lstDopasuj.FullRowSelect = true;
             this.lstDopasuj.HideSelection = false;
             this.lstDopasuj.Location = new System.Drawing.Point(12, 273);
             this.lstDopasuj.Name = "lstDopasuj";
-            this.lstDopasuj.Size = new System.Drawing.Size(772, 195);
+            this.lstDopasuj.Size = new System.Drawing.Size(906, 195);
             this.lstDopasuj.TabIndex = 3;
             this.lstDopasuj.UseCompatibleStateImageBehavior = false;
             this.lstDopasuj.View = System.Windows.Forms.View.Details;
@@ -156,7 +156,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "SKU/ID";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 106;
             // 
             // columnHeader2
             // 
@@ -166,7 +166,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "EAN";
-            this.columnHeader3.Width = 150;
+            this.columnHeader3.Width = 178;
             // 
             // columnHeader4
             // 
@@ -187,7 +187,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
             this.groupBox1.Location = new System.Drawing.Point(10, 103);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(773, 122);
+            this.groupBox1.Size = new System.Drawing.Size(907, 122);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dane produktu z listy hurtowni:";
@@ -237,7 +237,7 @@
             this.btnCancelAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnCancelAll.Image = global::ShoperCSVImport.Properties.Resources.button_cancel;
             this.btnCancelAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelAll.Location = new System.Drawing.Point(629, 474);
+            this.btnCancelAll.Location = new System.Drawing.Point(763, 474);
             this.btnCancelAll.Name = "btnCancelAll";
             this.btnCancelAll.Size = new System.Drawing.Size(155, 39);
             this.btnCancelAll.TabIndex = 5;
@@ -252,7 +252,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(795, 521);
+            this.ClientSize = new System.Drawing.Size(929, 521);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelAll);

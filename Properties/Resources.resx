@@ -178,6 +178,9 @@
   <data name="spreadsheet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spreadsheet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="button_cancel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_cancel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="2rightarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2rightarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -205,7 +208,7 @@
   <data name="apply2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\apply2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="button_cancel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_cancel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

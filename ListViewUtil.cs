@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NReco.Csv;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,11 +24,11 @@ namespace ShoperCSVImport
         {
             var list = new List<string[]>();
 
-            foreach(ListViewItem item in listView.Items)
+            foreach (ListViewItem item in listView.Items)
             {
                 var row = new string[listView.Columns.Count];
-                
-                for(int i = 0; i < Math.Min(item.SubItems.Count, listView.Columns.Count); i++)
+
+                for (int i = 0; i < Math.Min(item.SubItems.Count, listView.Columns.Count); i++)
                     row[i] = item.SubItems[i].Text.Trim();
 
                 list.Add(row);
@@ -88,6 +89,42 @@ namespace ShoperCSVImport
                 result.Append(String.Format("\"{0}\"", columnValue(i)));
             }
             result.AppendLine();
+        }
+
+        public static List<string[]> DeepCloneCsvTable(List<string[]> input)
+        {
+            List<string[]> cloned = new List<string[]>();
+
+            foreach (string[] xrow in input)
+            {
+                string[] row = new string[xrow.Length];
+                Array.Copy(xrow, row, row.Length);
+                cloned.Add(row);
+            }
+
+            return cloned;
+        }
+
+        public static List<string[]> ReadCsvArray (string plik)
+        {
+            List<string[]> prod = new List<string[]>();
+
+            using (var streamRdr = new StreamReader(plik))
+            {
+                var csvReader = new CsvReader(streamRdr, ";");
+                while (csvReader.Read())
+                {
+                    List<string> vals = new List<string>();
+
+                    for (int i = 0; i < csvReader.FieldsCount; i++)
+                    {
+                        vals.Add(csvReader[i]);
+                    }
+
+                    prod.Add(vals.ToArray());
+                }
+            }
+            return prod;
         }
     }
 }

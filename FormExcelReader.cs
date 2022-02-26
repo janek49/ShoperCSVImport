@@ -54,11 +54,17 @@ namespace ShoperCSVImport
                     cbxTable.SelectedIndex = 0;
                     cbxTable.Enabled = true;
                     btnOpenTable.Enabled = true;
+                    btnReadWholeDoc.Enabled = true;
                 }
             }
         }
 
         private void btnOpenTable_Click(object sender, EventArgs e)
+        {
+            ReadTable(cbxTable.SelectedIndex);
+        }
+
+        private void ReadTable(int index, bool wholeTable = false)
         {
             lstContent.Items.Clear();
             lstContent.Columns.Clear();
@@ -72,28 +78,35 @@ namespace ShoperCSVImport
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
 
-                    for (int i = 0; i < cbxTable.SelectedIndex; i++)
+                    for (int i = 0; i < index; i++)
                         reader.NextResult(); //przeskocz do wybranego arkusza
 
-                    while (reader.Read())
+                    do
                     {
-                        int cols = reader.FieldCount;
-
-                        while (lstContent.Columns.Count < cols)
-                            lstContent.Columns.Add("Kolumna " + (lstContent.Columns.Count + 1));
-
-                        string[] row = new string[cols];
-
-                        for (int i = 0; i < cols; i++)
+                        while (reader.Read())
                         {
-                            row[i] = reader.GetValue(i)?.ToString();
+                            int cols = reader.FieldCount;
+
+                            while (lstContent.Columns.Count < cols)
+                                lstContent.Columns.Add("Kolumna " + (lstContent.Columns.Count + 1));
+
+                            string[] row = new string[cols];
+
+                            for (int i = 0; i < cols; i++)
+                            {
+                                row[i] = reader.GetValue(i)?.ToString();
+                            }
+
+                            CurrentSheetLoaded.Add(row);
+
+                            lstContent.Items.Add(new ListViewItem(row));
+
                         }
 
-                        CurrentSheetLoaded.Add(row);
+                        if (!wholeTable)
+                            break;
 
-                        lstContent.Items.Add(new ListViewItem(row));
-
-                    }
+                    } while (reader.NextResult());
 
                 }
             }
@@ -109,6 +122,7 @@ namespace ShoperCSVImport
             Cursor = Cursors.Default;
             btnAccept.Enabled = true;
         }
+
 
         private void FixCollumns()
         {
@@ -168,6 +182,11 @@ namespace ShoperCSVImport
         private void btnAccept_Click(object sender, EventArgs e)
         {
             ResultContent = ListViewUtil.SerializeListView(lstContent);
+        }
+
+        private void btnReadWholeDoc_Click(object sender, EventArgs e)
+        {
+            ReadTable(0, true);
         }
     }
 }

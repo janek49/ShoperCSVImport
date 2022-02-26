@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShoperCSVImport
 {
-    public class TeifocStanyAdapter : StanyAdapter
+    public class TeifocStanyAdapter : SimpleStanyAdapter
     {
         public TeifocStanyAdapter()
         {
@@ -21,7 +21,7 @@ namespace ShoperCSVImport
        
     }
 
-    public class EitechStanyAdapter : StanyAdapter
+    public class EitechStanyAdapter : SimpleStanyAdapter
     {
         public EitechStanyAdapter()
         {
@@ -48,7 +48,7 @@ namespace ShoperCSVImport
         }
     }
 
-    public class HamaStanyAdapter : StanyAdapter
+    public class HamaStanyAdapter : SimpleStanyAdapter
     {
         public HamaStanyAdapter()
         {

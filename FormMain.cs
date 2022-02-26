@@ -22,7 +22,9 @@ namespace ShoperCSVImport
             InitializeComponent();
         }
 
-        public Dictionary<ParserAdapter, string> adapters = new Dictionary<ParserAdapter, string>();
+        public string MANUAL_ADAPTER_NAME = "[Ręczna konfiguracja]";
+
+        public Dictionary<AdapterBase, string> adapters = new Dictionary<AdapterBase, string>();
 
         public List<string[]> CurrentMagazynLoaded = new List<string[]>();
         public List<string[]> CurrentCsvFileLoaded = new List<string[]>();
@@ -30,7 +32,7 @@ namespace ShoperCSVImport
 
         public Color BgRedColor = Color.FromArgb(255, 100, 100);
 
-        public List<CsvShoperMatch> wczytaneProdukty = new List<CsvShoperMatch>();
+        public List<CsvShoperMatch> LoadedShoperCsvMatches = new List<CsvShoperMatch>();
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -41,7 +43,7 @@ namespace ShoperCSVImport
                 try
                 {
                     TemplateHelper.StanyAdapterConfig cfg = TemplateHelper.ReadConfigFile(fileName);
-                    var adp = new StanyAdapter();
+                    var adp = new SimpleStanyAdapter();
                     adp.idxTytul = cfg.ColumnTitle - 1;
                     adp.idxID = cfg.ColumnID - 1;
                     adp.idxDostepny = cfg.ColumnAvailable - 1;
@@ -57,19 +59,21 @@ namespace ShoperCSVImport
                 }
             }
 
-            adapters.Add(new StanyAdapter(), "[Ręczna konfiguracja]");
+            adapters.Add(new TubanAdapter(), "TUBAN");
 
-            foreach (KeyValuePair<ParserAdapter, string> kvp in adapters)
+            adapters.Add(new SimpleStanyAdapter(), MANUAL_ADAPTER_NAME);
+
+            foreach (KeyValuePair<AdapterBase, string> kvp in adapters)
             {
                 cmbAdapter.Items.Add(kvp.Value);
             }
 
             cmbAdapter.SelectedIndex = 0;
 
-            tabPage2.Enabled = false;
-            tabPage3.Enabled = false;
-            tabPage4.Enabled = false;
-            tabPage5.Enabled = false;
+            tab2ImportCsv.Enabled = false;
+            tab3MatchItems.Enabled = false;
+            tab4EditRows.Enabled = false;
+            tab5ExportFile.Enabled = false;
 
             if (!System.Windows.Forms.SystemInformation.TerminalServerSession)
             {
@@ -81,62 +85,68 @@ namespace ShoperCSVImport
         }
 
 
-
-        private ParserAdapter GetSelectedBehindAdapter()
+        private AdapterBase GetSelectedBehindAdapter()
         {
-            ParserAdapter sa = adapters.Keys.ElementAt(cmbAdapter.SelectedIndex);
+            AdapterBase sa = adapters.Keys.ElementAt(cmbAdapter.SelectedIndex);
             return sa;
         }
 
-        private StanyAdapter GetAdapter()
+        private SimpleStanyAdapter CreateChosenAdapter()
         {
-            StanyAdapter adp = new StanyAdapter();
-            adp.idxTytul = cbxParTitle.SelectedIndex;
-            adp.idxID = cbxParIDSKU.SelectedIndex;
-            adp.idxDostepny = cbxParAvail.SelectedIndex;
-            adp.idxEAN = cbxParEAN.SelectedIndex;
-            adp.filterTitle = txtParFilter.Text.ToLower();
-            return adp;
+            if (cmbAdapter.SelectedItem.ToString() == "TUBAN")
+            {
+                return new TubanAdapter();
+            }
+            else
+            {
+                SimpleStanyAdapter adp = new SimpleStanyAdapter();
+                adp.idxTytul = cbxParTitle.SelectedIndex;
+                adp.idxID = cbxParIDSKU.SelectedIndex;
+                adp.idxDostepny = cbxParAvail.SelectedIndex;
+                adp.idxEAN = cbxParEAN.SelectedIndex;
+                adp.filterTitle = txtParFilter.Text.ToLower();
+                return adp;
+            }
         }
-
-        public static bool CANCEL = false;
 
         private void btnDopasuj_Click(object sender, EventArgs e)
         {
-            StanyAdapter adp = GetAdapter();
+            SimpleStanyAdapter adapter = CreateChosenAdapter();
 
-            var mag = ParserAdapter.CzytajMagazynLstr(CurrentMagazynLoaded);
+            var magazynShoper = AdapterBase.CzytajMagazynLstr(CurrentMagazynLoaded);
 
-            var nowa = new List<CsvShoperMatch>();
-
-            foreach (CsvShoperMatch csm in wczytaneProdukty)
-            {
-                if (CANCEL)
+            var nowaLista = adapter.MatchItems(magazynShoper, LoadedShoperCsvMatches,
+                (csvRow) =>
                 {
-                    CANCEL = false;
-                    return;
-                }
-                var nw = adp.Rematch(csm, mag);
-                nowa.Add(nw == null ? csm : nw);
-            }
+                    if (csvRow[adapter.idxID].Trim().Length == 0 && cbxSkipID.Checked)
+                        return SimpleStanyAdapter.Action.SKIP_ITEM;
 
-            UpdateListViewFromCsv(nowa);
+                    if (csvRow[adapter.idxEAN].Trim().Length == 0 && cbxSkipEAN.Checked)
+                        return SimpleStanyAdapter.Action.SKIP_ITEM;
+
+                    if (csvRow[adapter.idxTytul].Trim().Length == 0 && cbxSkipTitle.Checked)
+                        return SimpleStanyAdapter.Action.SKIP_ITEM;
+
+                    return SimpleStanyAdapter.Action.ACCEPT;
+                });
+
+            //operacja przerwana
+            if (nowaLista == null)
+                return;
+
+            UpdateListViewFromCsvMatches(nowaLista);
 
             lblStatReadInprds.Text = lblStatReadInprds.Tag + " " + lstProdukty.Items.Count;
             lblStatAutoMatch.Text = lblStatAutoMatch.Tag + " " + (lstProdukty.Items.Count - StatMissingMatch - StatManualMatch);
             lblStatManualMatch.Text = lblStatManualMatch.Tag + " " + StatManualMatch;
             lblStatMissingMatch.Text = lblStatMissingMatch.Tag + " " + StatMissingMatch;
 
-
-            tabPage5.Enabled = true;
-            //    tabControl1.SelectedIndex = 3;
-
-
+            tab4EditRows.Enabled = true;
         }
 
         private int StatMissingMatch, StatManualMatch;
 
-        private void UpdateListViewFromCsv(List<CsvShoperMatch> newList = null, bool resize = true, bool fullReset = true)
+        private void UpdateListViewFromCsvMatches(List<CsvShoperMatch> newList = null, bool resize = true, bool fullReset = true)
         {
             StatMissingMatch = 0;
             StatManualMatch = 0;
@@ -145,8 +155,8 @@ namespace ShoperCSVImport
 
             if (newList != null)
             {
-                wczytaneProdukty.Clear();
-                wczytaneProdukty.AddRange(newList);
+                LoadedShoperCsvMatches.Clear();
+                LoadedShoperCsvMatches.AddRange(newList);
             }
 
             if (fullReset) lstProdukty.Clear();
@@ -160,7 +170,7 @@ namespace ShoperCSVImport
                 lstProdukty.Columns.Add("Shoper Cena");
             }
 
-            foreach (CsvShoperMatch csm in wczytaneProdukty)
+            foreach (CsvShoperMatch csm in LoadedShoperCsvMatches)
             {
                 if (fullReset)
                 {
@@ -193,11 +203,7 @@ namespace ShoperCSVImport
             }
 
             if (resize)
-            {
-                //lstProdukty.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                //lstProdukty.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 ListViewUtil.ResizeColumnsToViewport(lstProdukty);
-            }
 
             lstProdukty.Visible = true;
         }
@@ -208,16 +214,17 @@ namespace ShoperCSVImport
             if (lstProdukty.SelectedItems.Count == 1)
             {
                 int poz = lstProdukty.SelectedItems[0].Index;
-                CsvShoperMatch csm = wczytaneProdukty[poz];
+                CsvShoperMatch csm = LoadedShoperCsvMatches[poz];
+                var mag = AdapterBase.CzytajMagazynLstr(CurrentMagazynLoaded);
 
-                var newCsm = GetAdapter().Rematch(csm, txtMag.Text);
+                var newCsm = CreateChosenAdapter().RematchItem(csm, mag);
                 if (newCsm != null)
                 {
-                    int idx = wczytaneProdukty.IndexOf(csm);
+                    int idx = LoadedShoperCsvMatches.IndexOf(csm);
 
-                    wczytaneProdukty.Remove(csm);
-                    wczytaneProdukty.Insert(idx, newCsm);
-                    UpdateListViewFromCsv(null, false, false);
+                    LoadedShoperCsvMatches.Remove(csm);
+                    LoadedShoperCsvMatches.Insert(idx, newCsm);
+                    UpdateListViewFromCsvMatches(null, false, false);
                 }
             }
         }
@@ -246,50 +253,50 @@ namespace ShoperCSVImport
 
 
 
-
-
-
-
         private void btnReadWarehouse_Click(object sender, EventArgs e)
         {
-            CurrentMagazynLoaded = ParserAdapter.WczytajCSV(txtMag.Text);
+            CurrentMagazynLoaded = ListViewUtil.ReadCsvArray(txtMag.Text);
 
             ListViewUtil.DisplayStrArrInListView(lstMagazyn, CurrentMagazynLoaded, 100);
 
             lblMagSize.Text = "Wczytane produkty: " + CurrentMagazynLoaded.Count;
 
-            tabPage2.Enabled = true;
-            // tabControl1.SelectedIndex = 1;
+            tab2ImportCsv.Enabled = true;
         }
-
-
 
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            CurrentCsvFileLoaded = ParserAdapter.WczytajCSV(txtPlik.Text);
+            CurrentCsvFileLoaded = ListViewUtil.ReadCsvArray(txtPlik.Text);
 
             ListViewUtil.DisplayStrArrInListView(lstCsvFile, CurrentCsvFileLoaded);
 
             lblHurtProds.Text = "Wczytane produkty: " + lstCsvFile.Items.Count;
 
-            tabPage3.Enabled = true;
-            // tabControl1.SelectedIndex = 2;
-
+            tab3MatchItems.Enabled = true;
         }
 
         private void cmbAdapter_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                StanyAdapter adp = (StanyAdapter)GetSelectedBehindAdapter();
+                SimpleStanyAdapter adp = (SimpleStanyAdapter)GetSelectedBehindAdapter();
+
+                gbxAdapterConfig.Enabled = !(adp is TubanAdapter);
+
                 PrepareParamBoxes();
                 txtParFilter.Text = adp.filterTitle;
                 cbxParAvail.SelectedIndex = adp.idxDostepny;
                 cbxParEAN.SelectedIndex = adp.idxEAN;
                 cbxParIDSKU.SelectedIndex = adp.idxID;
                 cbxParTitle.SelectedIndex = adp.idxTytul;
-                cbxParPrice.SelectedIndex = adp.config.ColumnPrice - 1;
+
+
+                if (adp is CenyStanyAdapter)
+                    cbxParPrice.SelectedIndex = ((CenyStanyAdapter)adp).idxCena;
+                else
+                    cbxParPrice.SelectedIndex = adp.config.ColumnPrice - 1;
+
             }
             catch (Exception)
             {
@@ -316,18 +323,22 @@ namespace ShoperCSVImport
         }
         private void btnJoinTables_Click(object sender, EventArgs e)
         {
+            var inputTable = ListViewUtil.DeepCloneCsvTable(CurrentCsvFileLoaded);
+
+            CreateChosenAdapter().PreProcessTable(inputTable);
+
             var csmList = new List<CsvShoperMatch>();
-            foreach (string[] csv in CurrentCsvFileLoaded)
+            foreach (string[] csv in inputTable)
             {
                 CsvShoperMatch csm = new CsvShoperMatch();
                 csm.csvItem = csv;
                 csmList.Add(csm);
             }
-            UpdateListViewFromCsv(csmList);
+            UpdateListViewFromCsvMatches(csmList);
 
             cmbAdapter_SelectedIndexChanged(null, null);
 
-            tabPage4.Enabled = true;
+            tab5ExportFile.Enabled = true;
         }
 
 
@@ -414,8 +425,7 @@ namespace ShoperCSVImport
                 ListViewUtil.DisplayStrArrInListView(lstCsvFile, fer.ResultContent);
             }
 
-            tabPage3.Enabled = true;
-            //  tabControl1.SelectedIndex = 2;
+            tab3MatchItems.Enabled = true;
 
             lblHurtProds.Text = "Wczytane produkty: " + lstCsvFile.Items.Count;
         }
@@ -484,7 +494,7 @@ namespace ShoperCSVImport
                         double box = Util.ParseAnyDouble(frm.txtPriceMultiplier.Text.Trim());
 
                         double newprice = db * box;
-                        cellPriceNetto.Value = newprice.ToString("0.00").Replace(",",".");
+                        cellPriceNetto.Value = newprice.ToString("0.00").Replace(",", ".");
                     }
                     catch (Exception)
                     {
@@ -574,7 +584,7 @@ namespace ShoperCSVImport
                 dataGrid.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
             }
 
-            foreach (CsvShoperMatch csv in wczytaneProdukty)
+            foreach (CsvShoperMatch csv in LoadedShoperCsvMatches)
             {
                 string[] line = csv.csvItem;
                 if (line != null && csv.shoperItem != null)
